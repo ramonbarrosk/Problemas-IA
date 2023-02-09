@@ -67,8 +67,7 @@ def bfs(quantidade)
 
   while fila
     sequencia = fila[0]
-    p sequencia
-    p sequencia[-1]
+
     final = fila.size - 1
     fila = fila.slice(1, final)
     no = sequencia[-1]
