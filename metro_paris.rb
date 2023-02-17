@@ -25,10 +25,10 @@ def algoritmo_estrela(no_origem, no_destino, lista_nos, heuristicas)
   end
 
   p "Tempo total (minutos): #{melhor_rota.last[:custo]}"
-  p "Distancia total (km): #{30 * (melhor_rota.last[:custo].to_f/60)}"
+  p "Distancia total (km): #{(30 * melhor_rota.last[:custo].to_f/60).round(2)}"
   p "Melhor rota:"
   melhor_rota.each do |caminho|
-    p "Estação: #{caminho[:id]} - Linha #{caminho[:estacao]}"
+    p "Estação: #{caminho[:id] + 1} - Linha #{caminho[:estacao]}"
   end
 end
 
@@ -39,8 +39,8 @@ def ehDestino(no_atual, no_destino)
 end
  
 def verificaEstacoes(no, no_pai)
-  no[:estacoes].each do |estacao|
-    if no_pai[:estacoes].include?(estacao)
+  no[:linhas].each do |estacao|
+    if no_pai[:linhas].include?(estacao)
       no[:estacao] = estacao
       break
     end
@@ -131,20 +131,20 @@ if __FILE__ == $0
     lista_nos << hash
   end
 
-  lista_nos[0][:estacoes] = ['Azul']
-  lista_nos[1][:estacoes] = ['Azul', 'Amarelo']
-  lista_nos[2][:estacoes] = ['Azul', 'Vermelho']
-  lista_nos[3][:estacoes] = ['Azul', 'Verde']
-  lista_nos[4][:estacoes] = ['Azul', 'Amarelo']
-  lista_nos[5][:estacoes] = ['Azul']
-  lista_nos[6][:estacoes] = ['Amarelo']
-  lista_nos[7][:estacoes] = ['Amarelo', 'Verde']
-  lista_nos[8][:estacoes] = ['Amarelo', 'Vermelho']
-  lista_nos[9][:estacoes] = ['Amarelo']
-  lista_nos[10][:estacoes] = ['Vermelho']
-  lista_nos[11][:estacoes] = ['Verde']
-  lista_nos[12][:estacoes] = ['Vermelho', 'Verde']
-  lista_nos[13][:estacoes] = ['Verde']
+  lista_nos[0][:linhas] = ['Azul']
+  lista_nos[1][:linhas] = ['Azul', 'Amarelo']
+  lista_nos[2][:linhas] = ['Azul', 'Vermelho']
+  lista_nos[3][:linhas] = ['Azul', 'Verde']
+  lista_nos[4][:linhas] = ['Azul', 'Amarelo']
+  lista_nos[5][:linhas] = ['Azul']
+  lista_nos[6][:linhas] = ['Amarelo']
+  lista_nos[7][:linhas] = ['Amarelo', 'Verde']
+  lista_nos[8][:linhas] = ['Amarelo', 'Vermelho']
+  lista_nos[9][:linhas] = ['Amarelo']
+  lista_nos[10][:linhas] = ['Vermelho']
+  lista_nos[11][:linhas] = ['Verde']
+  lista_nos[12][:linhas] = ['Vermelho', 'Verde']
+  lista_nos[13][:linhas] = ['Verde']
 
   no_origem = lista_nos[origem.to_i - 1]
   no_destino = lista_nos[destino.to_i - 1]
