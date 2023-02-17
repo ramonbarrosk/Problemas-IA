@@ -3,7 +3,7 @@ def algoritmo_estrela(no_origem, no_destino, lista_nos, heuristicas)
   @fronteira = [no_origem]
 
   melhor_rota = []
-  visitados = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  visitados = [0] * 14
 
   while true
     no = @fronteira.shift
@@ -11,8 +11,7 @@ def algoritmo_estrela(no_origem, no_destino, lista_nos, heuristicas)
     next if visitados[no[:id]] == 1
 
     if ehDestino(no, no_destino)
-
-      while (no[:pai] != nil)
+      while !no[:pai].nil?
         melhor_rota.unshift(no)
         no = no[:pai]
       end
@@ -26,7 +25,7 @@ def algoritmo_estrela(no_origem, no_destino, lista_nos, heuristicas)
 
   p "Tempo total (minutos): #{melhor_rota.last[:custo]}"
   p "Distancia total (km): #{(30 * melhor_rota.last[:custo].to_f/60).round(2)}"
-  p "Melhor rota:"
+  p 'Melhor rota:'
   melhor_rota.each do |caminho|
     p "Estação: #{caminho[:id] + 1} - Linha #{caminho[:estacao]}"
   end
@@ -46,7 +45,7 @@ def verificaEstacoes(no, no_pai)
     end
   end
 
-  return 0 if (no[:estacao] == no_pai[:estacao] || no_pai[:estacao] == nil)
+  return 0 if no[:estacao] == no_pai[:estacao] || no_pai[:estacao] == nil
 
   return 4
 end
